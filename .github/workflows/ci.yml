@@ -40,7 +40,7 @@ jobs:
         image: postgis/postgis
         env:
           POSTGRES_USER: freelance-db_owner
-          POSTGRES_PASSWORD: endpoint=ep-small-waterfall-a1zg7e2z$uRd8UbS6nPwN
+          POSTGRES_PASSWORD: uRd8UbS6nPwN
           POSTGRES_DB: freelance-db
         ports:
           - 5432:5432
