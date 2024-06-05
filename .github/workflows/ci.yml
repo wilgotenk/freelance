@@ -86,6 +86,13 @@ jobs:
         run: |
           chmod -R 777 storage bootstrap/cache
 
+      - name: Test Database Connection
+        run: |
+          mysql --protocol=tcp -h 127.0.0.1 -P 3306 -u root -p
+          
       - name: Run test
         run: |
+          php artisan migrate --force
           php artisan test
+        env:
+          DB_DATABASE: freelance
