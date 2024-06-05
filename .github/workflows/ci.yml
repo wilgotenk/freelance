@@ -1,21 +1,23 @@
-name: Laravel CI
-
 on:
   push:
     branches:
+      - Testing
       - main
-      - frontend
-      - backend
   pull_request:
     branches:
+      - Testing
       - main
-      - frontend
-      - backend
+  workflow_dispatch:
+
+concurrency:
+  group: php-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-js-production:
-    name: Build Frontend Dependencies
+    name: Build JavaScript/CSS
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v4
       - name: NPM Build
@@ -28,25 +30,35 @@ jobs:
           name: assets
           path: public
           retention-days: 3
-  tests:
+
+  connect-database:
+    name: Connect Database
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    services:
+      postgres:
+        image: postgis/postgis
+        env:
+          POSTGRES_USER: freelance-db_owner
+          POSTGRES_PASSWORD: endpoint=ep-small-waterfall-a1zg7e2z$uRd8UbS6nPwN
+          POSTGRES_DB: freelance-db
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 3
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Connect Database
+        run: |
+          psql postgresql://freelance-db_owner:endpoint=ep-small-waterfall-a1zg7e2z$uRd8UbS6nPwN@ep-small-waterfall-a1zg7e2z.ap-southeast-1.aws.neon.tech/freelance-db?sslmode=require -c '\l'
+
+  test:
     name: Run tests
     runs-on: ubuntu-latest
-    needs: [build-js-production]
-    
-    services:
-      mysql:
-        image: mysql:latest
-        env:
-          MYSQL_ALLOW_EMPTY_PASSWORD: 1
-          MYSQL_DATABASE: freelance
-        ports:
-            - 3306:3306
-        options: >-
-          --health-cmd="mysqladmin ping"
-          --health-interval=10s
-          --health-timeout=5s
-          --health-retries=3
-
+    needs: [build-js-production, connect-database]
+    if: github.ref == 'refs/heads/main'
     steps:
       - name: Fetch built assets from Artifacts
         uses: actions/download-artifact@v4
@@ -69,12 +81,13 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: 8.2
+          extensions: mbstring, dom, fileinfo, pgsql
 
-      - name: copy .env file
+      - name: Copy .env
         run: |
           cp .env.ci .env
 
-      - name: Install composer
+      - name: Install Dependencies
         run: |
           composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
@@ -86,13 +99,10 @@ jobs:
         run: |
           chmod -R 777 storage bootstrap/cache
 
-      - name: Test Database Connection
-        run: |
-          mysql --protocol=tcp -h 127.0.0.1 -P 3306 -u root -p
-          
       - name: Run test
         run: |
-          php artisan migrate --force
           php artisan test
+          php artisan optimize
         env:
-          DB_DATABASE: freelance
+          DB_CONNECTION: pgsql
+          DATABASE_URL: postgresql://freelance-db_owner:endpoint=ep-small-waterfall-a1zg7e2z$uRd8UbS6nPwN@ep-small-waterfall-a1zg7e2z.ap-southeast-1.aws.neon.tech/freelance-db?sslmode=require
