@@ -52,7 +52,7 @@ jobs:
 
       - name: Connect Database
         run: |
-          psql postgresql://freelance-db_owner:endpoint=ep-small-waterfall-a1zg7e2z$uRd8UbS6nPwN@ep-small-waterfall-a1zg7e2z.ap-southeast-1.aws.neon.tech/freelance-db?sslmode=require -c '\l'
+          psql postgresql://freelance-db_owner:uRd8UbS6nPwN@ep-small-waterfall-a1zg7e2z.ap-southeast-1.aws.neon.tech/freelance-db?sslmode=require -c '\l'
 
   test:
     name: Run tests
@@ -105,4 +105,4 @@ jobs:
           php artisan optimize
         env:
           DB_CONNECTION: pgsql
-          DATABASE_URL: postgresql://freelance-db_owner:endpoint=ep-small-waterfall-a1zg7e2z$uRd8UbS6nPwN@ep-small-waterfall-a1zg7e2z.ap-southeast-1.aws.neon.tech/freelance-db?sslmode=require
+          DATABASE_URL: postgresql://freelance-db_owner:uRd8UbS6nPwN@ep-small-waterfall-a1zg7e2z.ap-southeast-1.aws.neon.tech/freelance-db?sslmode=require
