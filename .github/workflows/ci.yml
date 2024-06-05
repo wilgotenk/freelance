@@ -14,13 +14,13 @@ jobs:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v4
       - name: NPM Build
         run: |
           npm install
           npm run dev
       - name: Put built assets in Artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: assets
           path: public
@@ -31,11 +31,17 @@ jobs:
     needs: [build-js-production]
     if: github.ref == 'refs/heads/main'
     steps:
+      - name: Fetch built assets from Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: assets
+          path: public
+          
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Cache composer dependencies
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: vendor
           key: composer-${{ hashFiles('**/composer/lock')}}
