@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
+// front ( landing )
+use App\Http\Controllers\Landing\LandingController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::resource('/', LandingController::class);
 
 Route::middleware([
     'auth:sanctum',
