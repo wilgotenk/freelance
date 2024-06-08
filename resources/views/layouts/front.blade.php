@@ -1,27 +1,32 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
 
-        @include('includes.landing.meta')
+<head>
 
-        <title>@yield('title') | Kerja.in</title>
+    @include('includes.landing.meta')
 
-        @stack('before-style')
+    <title>@yield('title') | Kerja.in</title>
 
-        @include('includes.landing.style')
+    @stack('before-style')
 
-        @stack('after-style')
+    @include('includes.landing.style')
 
-    </head>
-    <body class="antialiased">
-        <div class="relative">
+    @stack('after-style')
 
-            @include('includes.landing.header')
+</head>
 
-                @include('sweetalert::alert')
+<body class="antialiased">
+    <div class="relative">
 
-                @yield('content')
+        @include('includes.landing.header')
 
-        </div>
-    </body>
+        @include('sweetalert::alert')
+
+        @yield('content')
+
+        @include('includes.landing.footer')
+
+    </div>
+</body>
+
 </html>
