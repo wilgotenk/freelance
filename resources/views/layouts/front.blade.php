@@ -26,6 +26,17 @@
 
         @include('includes.landing.footer')
 
+        @stack('before-script')
+
+        @include('includes.landing.script')
+
+        @stack('after-script')
+
+        {{-- modals --}}
+        @include('components.modal.login')
+        @include('components.modal.register')
+        @include('components.modal.register-success')
+
     </div>
 </body>
 
