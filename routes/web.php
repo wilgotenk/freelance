@@ -7,6 +7,7 @@ use App\Http\Controllers\Landing\LandingController;
 
 // member ( dashboard )
 use App\Http\Controllers\Dashboard\MemberController;
+use App\Http\Controllers\Dashboard\ServiceController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,6 +26,9 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sa
 
     // dashboard
     Route::resource('dashboard', MemberController::class);
+
+    // service
+    Route::resource('service', ServiceController::class);
 });
 
 // Route::get('/', function () {
