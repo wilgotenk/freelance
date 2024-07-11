@@ -133,7 +133,6 @@
     <exclude-pattern>*/*.js</exclude-pattern>
     <exclude-pattern>*/*.css</exclude-pattern>
     <exclude-pattern>*/*.xml</exclude-pattern>
-    <exclude-pattern>*/*.blade.php</exclude-pattern>
     <exclude-pattern>*/autoload.php</exclude-pattern>
     <exclude-pattern>*/storage/*</exclude-pattern>
     <exclude-pattern>*/docs/*</exclude-pattern>
@@ -141,7 +140,6 @@
     <exclude-pattern>*/migrations/*</exclude-pattern>
     <exclude-pattern>*/config/*</exclude-pattern>
     <exclude-pattern>*/public/index.php</exclude-pattern>
-    <exclude-pattern>*/*.blade.php</exclude-pattern>
     <exclude-pattern>*/Console/Kernel.php</exclude-pattern>
     <exclude-pattern>*/Exceptions/Handler.php</exclude-pattern>
     <exclude-pattern>*/Http/Kernel.php</exclude-pattern>

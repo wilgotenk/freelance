@@ -56,11 +56,12 @@
             "@php artisan key:generate --ansi"
         ],
         "code-sniff": [
-            "phpcs --standard=phpcs.xml -n || true"
+            "phpcs --standard=phpcs.xml -n"
         ],
         "code-fix": [
-            "phpcbf --standard=phpcs.xml || true"
+            "phpcbf --standard=phpcs.xml"
         ]
+      
     },
     "extra": {
         "laravel": {
@@ -70,7 +71,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true
