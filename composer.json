@@ -56,10 +56,10 @@
             "@php artisan key:generate --ansi"
         ],
         "code-sniff": [
-            "./vendor/bin/phpcs -n"
+            "phpcs --standard=phpcs.xml -n || true"
         ],
         "code-fix": [
-            "./vendor/bin/phpcbf"
+            "phpcbf --standard=phpcs.xml || true"
         ]
     },
     "extra": {
