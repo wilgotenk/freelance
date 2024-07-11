@@ -3,7 +3,11 @@ name: Laravel CI
 on:
   push:
     branches:
+      - dev
+  pull_request:
+    branches:
       - frontend
+      - backend
 
 jobs:
   build-js-production:
