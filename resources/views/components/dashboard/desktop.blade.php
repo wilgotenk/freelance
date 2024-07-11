@@ -2,8 +2,10 @@
 <aside class="z-20 flex-shrink-0 hidden w-64 overflow-y-auto bg-white md:block" aria-label="aside">
     <div class="text-serv-bg">
 
-        <div class="" href="">
-            <img src="{{ asset('/assets/images/logo.svg') }}" alt="" class="object-center px-2 my-8 ">
+        <div class="">
+            <a href="/">
+                <img src="{{ asset('/assets/images/logo.svg') }}" alt="" class="object-center px-2 my-8 ">
+            </a>
         </div>
 
         <div class="flex items-center pt-8 pl-5 space-x-2 border-t border-gray-100">
