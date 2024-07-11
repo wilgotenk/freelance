@@ -87,8 +87,9 @@ jobs:
         run: |
           chmod -R 777 storage bootstrap/cache
 
-      - name: Run & Fix PHP Code
-        run: |
-          composer code-fix
-          composer code-sniff
+      - name: Run & fix PHP Code Sniffer
+        uses: shalior/wordpress-phpcs-action@v1.0.4
+        with: 
+          use_default_configuration_file: true
+          phpcs_args: '-n'      
           
