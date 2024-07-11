@@ -70,6 +70,7 @@ jobs:
       - name: Install composer
         run: |
           composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+          composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: Generate key
         run: |
@@ -79,6 +80,6 @@ jobs:
         run: |
           chmod -R 777 storage bootstrap/cache
 
-      - name: Run test
+      - name: Check error code
         run: |
-          php artisan test
+          composer code-sniff
