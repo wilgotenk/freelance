@@ -77,6 +77,7 @@ jobs:
       - name: Install composer
         run: |
           composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+          composer update
 
       - name: Generate key
         run: |
@@ -86,8 +87,8 @@ jobs:
         run: |
           chmod -R 777 storage bootstrap/cache
 
-      - name: Cek error & Fix code
+      - name: Run & Fix PHP Code
         run: |
-          composer code-sniff
           composer code-fix
+          composer code-sniff
           
