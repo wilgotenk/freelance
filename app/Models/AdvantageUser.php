@@ -20,7 +20,7 @@ class AdvantageUser extends Model
     ];
 
     protected $fillable = [
-        'service_id', 
+        'service_id',
         'advantage',
         'updated_at',
         'created_at',
