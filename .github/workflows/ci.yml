@@ -86,6 +86,10 @@ jobs:
         run: |
           chmod -R 777 storage bootstrap/cache
 
-      - name: Run test
+      - name: Cek error code
         run: |
-          php artisan test
+          composer code-sniff
+      
+      - name: Fix Error Code
+        run: |
+          composer code-fix
