@@ -4,6 +4,12 @@
         "api/index.php": { "runtime": "vercel-php@0.6.0" }
     },
     "routes": [
+        { "src": "/build/(.*)", "dest": "/public/build/" },
+        { "src": "/css/(.*)", "dest": "/public/css/" },
+        { "src": "/js/(.*)", "dest": "/public/js/" },
+        { "src": "/favicon.ico", "dest": "/public/favicon.ico" },
+        { "src": "/robots.txt", "dest": "/public/robots.txt" },
+        { "src": "/assets/(.*)", "dest": "/public/assets/" },
         { "src": "/(.*)", "dest": "/api/index.php" }
     ],
     "outputDirectory": "public",
@@ -11,6 +17,7 @@
         "APP_ENV": "production",
         "APP_DEBUG": "false",
         "APP_URL": "https://test-laravel.com",
+        "APP_KEY": "base64:XSG3hyA2D8FjaMbNClOrh8lzVWW6qI5j8+XKHjntfdE=",
         "APP_CONFIG_CACHE": "/tmp/config.php",
         "APP_EVENTS_CACHE": "/tmp/events.php",
         "APP_PACKAGES_CACHE": "/tmp/packages.php",
