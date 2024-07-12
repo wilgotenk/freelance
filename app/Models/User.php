@@ -28,7 +28,7 @@ class User extends Authenticatable
         'updated_at',
         'created_at',
         'deleted_at',
-        'email_verified_at'
+        'email_verified_at',
     ];
 
     /**
@@ -94,5 +94,4 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Models\Order', 'freelancer_id');
     }
-
 }

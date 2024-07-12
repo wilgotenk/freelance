@@ -20,7 +20,7 @@ class Tagline extends Model
     ];
 
     protected $fillable = [
-        'service_id', 
+        'service_id',
         'tagline',
         'updated_at',
         'created_at',

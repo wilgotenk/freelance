@@ -20,8 +20,8 @@ class DetailUser extends Model
     ];
 
     protected $fillable = [
-        'users_id', 
-        'photo', 
+        'users_id',
+        'photo',
         'role',
         'contact_number',
         'biography',

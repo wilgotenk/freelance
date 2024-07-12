@@ -20,7 +20,7 @@ class ThumbnailService extends Model
     ];
 
     protected $fillable = [
-        'service_id', 
+        'service_id',
         'thumbnail',
         'updated_at',
         'created_at',
