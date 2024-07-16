@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Artisan;
 
 // front ( landing )
 use App\Http\Controllers\Landing\LandingController;
@@ -38,3 +39,7 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sa
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+Route::get('/link', function () {
+    Artisan::call('storage:link');
+});
