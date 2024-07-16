@@ -56,7 +56,7 @@
             "@php artisan key:generate --ansi"
         ],
         "code-sniff": [
-            "phpcs --standard=phpcs.xml -n || true"
+            "phpcs --standard=phpcs.xml -n"
         ],
         "code-fix": [
             "phpcbf --standard=phpcs.xml"
