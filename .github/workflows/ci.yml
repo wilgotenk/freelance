@@ -93,6 +93,6 @@ jobs:
         with:
           server: ftpupload.net
           username: ezyro_36914490
-          password: d4061737
+          password: stroz
           server-dir: /htdocs/
       
