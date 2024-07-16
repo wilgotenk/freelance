@@ -100,6 +100,6 @@ jobs:
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ftpupload.net
-          username: d4061737
+          username: ezyro_36914490
           password: d4061737
           server-dir: /htdocs/
