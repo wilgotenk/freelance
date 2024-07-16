@@ -102,4 +102,4 @@ jobs:
           server: ftpupload.net
           username: d4061737
           password: d4061737
-          local-dir: /htdocs/
+          server-dir: /htdocs/
