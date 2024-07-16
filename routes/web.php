@@ -20,6 +20,11 @@ use App\Http\Controllers\Dashboard\ServiceController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/storage-link', function () {
+    $targetFolder = storage_path('app/public');
+    $linkFolder = $_SERVER['DOCUMENT_ROOT'] . '/storage';
+    symlink($targetFolder, $linkFolder);
+});
 
 Route::get('detail_booking/{id}', [LandingController::class, 'detail_booking'])->name('detail.booking.landing');
 Route::get('booking/{id}', [LandingController::class, 'booking'])->name('booking.landing');
@@ -39,9 +44,3 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sa
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-
-Route::get('/storage-link', function () {
-    $targetFolder = storage_path('app/public');
-    $linkFolder = $_SERVER['DOCUMENT_ROOT'] . '/storage';
-    symlink($targetFolder, $linkFolder);
-});
