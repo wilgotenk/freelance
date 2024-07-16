@@ -89,16 +89,17 @@ jobs:
           composer code-sniff
 
   web-deploy:
-    name: ? Deploy
+    name: Deploy
     runs-on: ubuntu-latest
+    needs: [tests]
     steps:
-      - name: ? Get latest code
+      - name: Get latest code
         uses: actions/checkout@v4
 
-      - name: ? Sync files
+      - name: Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ftpupload.net
           username: d4061737
           password: d4061737
-          local-dir: ./htdocs/
+          local-dir: /htdocs/
