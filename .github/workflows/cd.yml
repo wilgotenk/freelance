@@ -35,13 +35,13 @@ jobs:
         run: |
           composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --no-dev --optimize-autoloader
 
-      - name: copy .env file
-        run: |
-          cp .env.ci .env
+      # - name: copy .env file
+      #   run: |
+      #     cp .env.ci .env
 
-      - name: Update .env file
-        run: |
-          echo "${{ secrets.ENV_FILE }}" > .env
+      # - name: Update .env file
+      #   run: |
+      #     echo "${{ secrets.ENV_FILE }}" > .env
 
       - name: Generate key
         run: |
@@ -53,10 +53,11 @@ jobs:
 
       - name: Clear cache
         run: |
-          php artisan optimize:clear
+          php artisan config:cache
           php artisan route:cache
           php artisan view:cache
           php artisan event:cache
+          php artisan optimize
 
       - name: Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
