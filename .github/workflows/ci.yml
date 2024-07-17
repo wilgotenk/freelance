@@ -120,3 +120,71 @@ jobs:
           local-dir: ./public/
           server-dir: /htdocs/
           dry-run: true
+
+  laravel-deploy:
+    name: Deploy to FTP
+    runs-on: ubuntu-latest
+    needs: [tests]
+    steps:
+      - name: Get latest code
+        uses: actions/checkout@v4
+
+      - name: Fetch built assets from Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: assets
+          path: public
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('**/composer/lock')}}
+          restore-keys: |
+            composer-
+
+      - name: install PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.2
+      
+      - name: copy .env file
+        run: |
+          cp .env.ci .env
+
+      - name: Install composer
+        run: |
+          composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+          composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+      - name: Generate key
+        run: |
+          php artisan key:generate
+
+      - name: Directory Permissions
+        run: |
+          chmod -R 777 storage bootstrap/cache
+      
+      - name: Clear cache
+        run: |
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+      
+      - name: Make storage link
+        run: |
+          php artisan storage:link
+
+      - name: Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ftpupload.net
+          username: ezyro_36914490
+          password: stroz
+          server-dir: /htdocs/laravel/
+          dry-run: true
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/public/**
