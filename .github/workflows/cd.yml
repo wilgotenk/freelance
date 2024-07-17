@@ -1,19 +1,20 @@
-name: Laravel CI
-
+name: Laravel CD
 on:
-  push:
-    branches:
-      - dev
-  pull_request:
-    branches:
-      - frontend
-      - backend
+  workflow_dispatch:
+  repository_dispatch:
+    types: [Deploy]
 
 jobs:
-  tests:
-    name: Run tests
+  Deploy:
+    name: Deploy website
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
+      - name: Build Frontend
+        run: |
+          npm install
+          npm run prod
+
       - name: Checkout repository
         uses: actions/checkout@v4
 
@@ -37,21 +38,26 @@ jobs:
       - name: Install composer
         run: |
           composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+          composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: Generate key
         run: |
           php artisan key:generate
 
-      - name: Check error code
+      - name: Directory Permissions
         run: |
-          composer code-sniff
+          chmod -R 777 storage bootstrap/cache
 
-  trigger-cd:
-    needs: [tests]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger CD
-        uses: peter-evans/repository-dispatch@v3
+      - name: Clear cache
+        run: |
+          php artisan config:cache
+          php artisan route:cache
+          php artisan view:cache
+
+      - name: Sync files
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          event-type: Deploy
-
+          server: ftpupload.net
+          username: ezyro_36918755
+          password: testing
+          server-dir: /htdocs/
