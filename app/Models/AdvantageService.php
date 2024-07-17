@@ -20,7 +20,7 @@ class AdvantageService extends Model
     ];
 
     protected $fillable = [
-        'service_id', 
+        'service_id',
         'advantage',
         'updated_at',
         'created_at',
@@ -32,5 +32,4 @@ class AdvantageService extends Model
     {
         return $this->belongsTo('App/Models/Service', 'service_id', 'id');
     }
-
 }

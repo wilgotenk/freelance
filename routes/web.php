@@ -2,6 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
+// front ( landing )
+use App\Http\Controllers\Landing\LandingController;
+
+// member ( dashboard )
+use App\Http\Controllers\Dashboard\MemberController;
+use App\Http\Controllers\Dashboard\ServiceController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,16 +20,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('detail_booking/{id}', [LandingController::class, 'detail_booking'])->name('detail.booking.landing');
+Route::get('booking/{id}', [LandingController::class, 'booking'])->name('booking.landing');
+Route::get('detail/{id}', [LandingController::class, 'detail'])->name('detail.landing');
+Route::get('explore', [LandingController::class, 'explore'])->name('explore.landing');
+Route::resource('/', LandingController::class);
+
+Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sanctum', 'verified']], function () {
+
+    // dashboard
+    Route::resource('dashboard', MemberController::class);
+
+    // service
+    Route::resource('service', ServiceController::class);
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
