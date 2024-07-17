@@ -38,7 +38,7 @@ jobs:
           APP_ENV: production
           APP_DEBUG: false
           DB_CONNECTION: mysql
-          DB_HOST: 	sql106.ezyro.com
+          DB_HOST: sql106.ezyro.com
           DB_DATABASE: ezyro_36918755_test
           DB_USERNAME: ezyro_36918755	
           DB_PASSWORD: testing
