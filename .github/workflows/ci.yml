@@ -52,6 +52,10 @@ jobs:
     needs: [tests]
     if: ${{ github.ref == 'refs/heads/main' }} # Only trigger CD on main branch
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      repository-projects: write
     steps:
       - name: Trigger CD
         uses: peter-evans/repository-dispatch@v3
