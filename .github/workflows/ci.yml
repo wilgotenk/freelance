@@ -106,10 +106,6 @@ jobs:
           php artisan config:cache
           php artisan route:cache
           php artisan view:cache
-      
-      - name: Make storage link
-        run: |
-          php artisan storage:link
 
       - name: Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -119,7 +115,6 @@ jobs:
           password: stroz
           local-dir: ./public/
           server-dir: /htdocs/
-          dry-run: true
 
   laravel-deploy:
     name: Deploy to FTP
@@ -181,7 +176,7 @@ jobs:
           server: ftpupload.net
           username: ezyro_36914490
           password: stroz
-          server-dir: /htdocs/www/
+          server-dir: /htdocs/
           dry-run: true
           exclude: |
             **/.git*
