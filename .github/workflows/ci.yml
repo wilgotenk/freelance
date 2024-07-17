@@ -176,8 +176,7 @@ jobs:
           server: ftpupload.net
           username: ezyro_36914490
           password: stroz
-          server-dir: /htdocs/
-          dry-run: true
+          server-dir: /htdocs/laravel
           exclude: |
             **/.git*
             **/.git*/**
