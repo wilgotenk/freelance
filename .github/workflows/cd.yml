@@ -1,7 +1,8 @@
 name: Laravel CD
 on:
+  workflow_dispatch:
   repository_dispatch:
-    types: [CD]
+    types: [Deploy]
 
 jobs:
   Deploy:

@@ -9,10 +9,6 @@ on:
       - frontend
       - backend
 
-concurrency:
-  group: php-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
-
 jobs:
   tests:
     name: Run tests
@@ -57,5 +53,5 @@ jobs:
       - name: Trigger CD
         uses: peter-evans/repository-dispatch@v3
         with:
-          event-type: CD
+          event-type: Deploy
 
