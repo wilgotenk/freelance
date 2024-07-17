@@ -34,7 +34,7 @@ jobs:
       - name: Install composer
         run: |
           composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --no-dev --optimize-autoloader
-
+          
       - name: copy .env file
         run: |
           cp .env.ci .env
