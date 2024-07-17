@@ -42,13 +42,7 @@ jobs:
       
       - name: Update .env file
         run: |
-          echo APP_ENV=production >> .env
-          echo APP_DEBUG=false >> .env
-          echo DB_CONNECTION=mysql >> .env
-          echo DB_HOST=sql106.ezyro.com >> .env
-          echo DB_DATABASE=ezyro_36918755_test >> .env
-          echo DB_USERNAME=ezyro_36918755	>> .env
-          echo DB_PASSWORD=testing >> .env
+          echo "${{ secrets.ENV_FILE }}" > .env
 
       - name: Generate key
         run: |
