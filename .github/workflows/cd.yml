@@ -33,8 +33,7 @@ jobs:
 
       - name: Install composer
         run: |
-          composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
-          composer update -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --optimize-autoloader
+          composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist --no-dev --optimize-autoloader
 
       - name: copy .env file
         run: |
@@ -50,13 +49,17 @@ jobs:
 
       - name: Directory Permissions
         run: |
-          chmod -R 777 storage bootstrap/cache
+          chgrp -R www-data storage bootstrap/cache
+          chmod -R ug+rwx storage bootstrap/cache
+
 
       - name: Clear cache
         run: |
           php artisan config:cache
+          php artisan event:cache
           php artisan route:cache
           php artisan view:cache  
+          php artisan optimize
 
       - name: Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
