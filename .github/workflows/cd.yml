@@ -49,17 +49,15 @@ jobs:
 
       - name: Directory Permissions
         run: |
-          chgrp -R www-data storage bootstrap/cache
           chmod -R ug+rwx storage bootstrap/cache
 
       - name: Clear cache
         run: |
-          php artisan config:clear
-          php artisan config:cache
-          php artisan event:cache
-          php artisan route:cache
-          php artisan view:cache  
-          php artisan optimize
+          php artisan optimize:clear
+          php artisan route:chache
+          php artisan config:chache
+          php artisan view:chache
+          php artisan event:chache
 
       - name: Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
