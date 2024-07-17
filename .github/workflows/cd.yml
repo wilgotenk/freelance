@@ -42,15 +42,7 @@ jobs:
 
       - name: Generate key
         run: |
-          php artisan key:generate
-        env: |
-          APP_ENV: production
-          APP_DEBUG: false
-          DB_CONNECTION: mysql
-          DB_HOST: sql106.ezyro.com
-          DB_DATABASE: ezyro_36918755_test
-          DB_USERNAME: ezyro_36918755	
-          DB_PASSWORD: testing        
+          php artisan key:generate     
 
       - name: Directory Permissions
         run: |
@@ -61,6 +53,14 @@ jobs:
           php artisan config:cache
           php artisan route:cache
           php artisan view:cache
+        env: |
+          APP_ENV: production
+          APP_DEBUG: false
+          DB_CONNECTION: mysql
+          DB_HOST: sql106.ezyro.com
+          DB_DATABASE: ezyro_36918755_test
+          DB_USERNAME: ezyro_36918755	
+          DB_PASSWORD: testing   
 
       - name: Sync files
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
