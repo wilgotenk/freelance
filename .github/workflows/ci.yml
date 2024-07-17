@@ -48,6 +48,7 @@ jobs:
 
   trigger-cd:
     needs: [tests]
+    if: ${{ github.ref == 'refs/heads/main' }}
     runs-on: ubuntu-latest
     steps:
       - name: Trigger CD
