@@ -43,9 +43,9 @@ jobs:
       #   run: |
       #     echo "${{ secrets.ENV_FILE }}" > .env
 
-      - name: Generate key
-        run: |
-          php artisan key:generate
+      # - name: Generate key
+      #   run: |
+      #     php artisan key:generate
 
       - name: Directory Permissions
         run: |
