@@ -55,6 +55,7 @@ jobs:
 
       - name: Clear cache
         run: |
+          php artisan config:clear
           php artisan config:cache
           php artisan event:cache
           php artisan route:cache
