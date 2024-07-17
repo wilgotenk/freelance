@@ -57,6 +57,5 @@ jobs:
       - name: Trigger CD
         uses: peter-evans/repository-dispatch@v3
         with:
-          repository: ${{ github.repository }}
           event-type: CD
 

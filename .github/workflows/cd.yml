@@ -1,8 +1,7 @@
 name: Laravel CD
 on:
   repository_dispatch:
-    types:
-      - CD
+    types: [CD]
 
 jobs:
   Deploy:
