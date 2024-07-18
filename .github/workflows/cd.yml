@@ -39,9 +39,9 @@ jobs:
         run: |
           cp .env.ci .env
 
-    #   - name: Update .env file
-    #     run: |
-    #       echo "${{ secrets.ENV_FILE }}" > .env
+      - name: Update .env file
+        run: |
+          echo "${{ secrets.ENV_FILE }}" > .env
 
       - name: Generate key
         run: |
