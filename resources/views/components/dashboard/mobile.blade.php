@@ -7,7 +7,7 @@
 
     <div class="py-4 text-gray-500 dark:text-gray-400">
 
-        <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="#">
+        <a class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200" href="/">
             <img src="{{ asset('/assets/images/logo.svg') }}" alt="" class="px-2">
         </a>
 
@@ -98,7 +98,7 @@
                 @endif
 
                 <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
-                    href="#">
+                    href="{{ route('member.request.index') }}">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect x="2.25" y="1.25" width="19.5" height="21.5" rx="4.75" stroke="#082431"
