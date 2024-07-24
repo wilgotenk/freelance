@@ -114,7 +114,7 @@
                                     {{ substr($order->file, -10) ?? '' }}
                                 </h2>
                                 <p class="text-sm text-gray-400">
-                                    Click gDownload Fileh untuk mengunduhnya
+                                    Click Download File untuk mengunduhnya
                                 </p>
 
                                 <div class="relative mt-0 md:mt-6">

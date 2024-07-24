@@ -9,6 +9,7 @@ use App\Http\Controllers\Landing\LandingController;
 use App\Http\Controllers\Dashboard\MemberController;
 use App\Http\Controllers\Dashboard\ServiceController;
 use App\Http\Controllers\Dashboard\RequestController;
+use App\Http\Controllers\Dashboard\MyOrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,11 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sa
     // request
     Route::get('approve_request/{id}', [RequestController::class, 'approve'])->name('approve.request');
     Route::resource('request', RequestController::class);
+
+    // my order
+    Route::get('accept/order/{id}', [MyOrderController::class, 'accepted'])->name('accept.order');
+    Route::get('reject/order/{id}', [MyOrderController::class, 'rejected'])->name('reject.order');
+    Route::resource('order', MyOrderController::class);
 });
 
 // Route::get('/', function () {

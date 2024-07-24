@@ -142,7 +142,7 @@
                 @endif
 
                 <a class="inline-flex items-center w-full text-sm font-light transition-colors duration-150 hover:text-gray-800"
-                    href="#">
+                    href="{{ route('member.order.index') }}">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                         xmlns="http://www.w3.org/2000/svg">
                         <rect x="3.25" y="2.25" width="17.5" height="19.5" rx="4.75" stroke="#082431"
