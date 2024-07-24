@@ -104,9 +104,10 @@ class MyOrderController extends Controller
     {
         $data = $request->all();
 
-        if(isset($data['file'])){
+        if (isset($data['file'])) {
             $data['file'] = $request->file('file')->store(
-                'assets/order/attachment', 'public'
+                'assets/order/attachment',
+                'public'
             );
         }
 

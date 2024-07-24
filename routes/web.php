@@ -10,6 +10,7 @@ use App\Http\Controllers\Dashboard\MemberController;
 use App\Http\Controllers\Dashboard\ServiceController;
 use App\Http\Controllers\Dashboard\RequestController;
 use App\Http\Controllers\Dashboard\MyOrderController;
+use App\Http\Controllers\Dashboard\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,10 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sa
     Route::get('accept/order/{id}', [MyOrderController::class, 'accepted'])->name('accept.order');
     Route::get('reject/order/{id}', [MyOrderController::class, 'rejected'])->name('reject.order');
     Route::resource('order', MyOrderController::class);
+
+    // profile
+    Route::get('delete_photo', [ProfileController::class, 'delete'])->name('delete.photo.profile');
+    Route::resource('profile', ProfileController::class);
 });
 
 // Route::get('/', function () {
