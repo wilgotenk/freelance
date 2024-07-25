@@ -232,12 +232,11 @@
 
                                         <div class="col-span-6">
                                             <label for="note"
-                                                class="block mb-3 font-medium text-gray-700 text-md">Note <span
-                                                    class="text-gray-400">(Optional)</span></label>
+                                                class="block mb-3 font-medium text-gray-700 text-md">Note</label>
                                             <input placeholder="Hal yang ingin disampaikan oleh kamu?" type="text"
                                                 name="note" id="note" autocomplete="note"
                                                 class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm"
-                                                value="{{ old('note') }}">
+                                                value="{{ old('note') }}" required>
 
                                             @if ($errors->has('note'))
                                                 <p class="text-red-500 mb-3 text-sm">{{ $errors->first('note') }}</p>
@@ -245,11 +244,13 @@
                                         </div>
 
                                         <div class="col-span-6">
-                                            <label for="service-name"
-                                                class="block mb-3 font-medium text-gray-700 text-md">Tagline <span
-                                                    class="text-gray-400"></span></label>
-
+                                            <label for="tagline"
+                                                class="block mb-3 font-medium text-gray-700 text-md">Tagline</label>
                                             <div id="newTaglineRow"></div>
+
+                                            <input placeholder="Tagline" type="text" name="tagline[]" id="tagline" 
+                                                autocomplete="tagline" 
+                                                class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>
 
                                             <button type="button"
                                                 class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500"
@@ -257,8 +258,8 @@
                                                 Tambahkan Tagline +
                                             </button>
 
-                                            @if ($errors->has('service-name'))
-                                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('service-name') }}
+                                            @if ($errors->has('tagline'))
+                                                <p class="text-red-500 mb-3 text-sm">{{ $errors->first('tagline') }}
                                                 </p>
                                             @endif
                                         </div>
