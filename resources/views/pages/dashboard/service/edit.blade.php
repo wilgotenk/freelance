@@ -221,8 +221,7 @@
 
                                         <div class="col-span-6">
                                             <label for="note"
-                                                class="block mb-3 font-medium text-gray-700 text-md">Note <span
-                                                    class="text-gray-400">(Optional)</span></label>
+                                                class="block mb-3 font-medium text-gray-700 text-md">Note</label>
 
                                             <input placeholder="Hal yang ingin disampaikan oleh kamu?" type="text"
                                                 name="note" id="note" autocomplete="note"
