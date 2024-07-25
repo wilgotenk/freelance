@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Landing;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Auth;
+
 use App\Models\Order;
 use App\Models\Service;
 use App\Models\AdvantageUser;

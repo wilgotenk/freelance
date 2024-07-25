@@ -8,6 +8,9 @@ use App\Http\Controllers\Landing\LandingController;
 // member ( dashboard )
 use App\Http\Controllers\Dashboard\MemberController;
 use App\Http\Controllers\Dashboard\ServiceController;
+use App\Http\Controllers\Dashboard\RequestController;
+use App\Http\Controllers\Dashboard\MyOrderController;
+use App\Http\Controllers\Dashboard\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +36,19 @@ Route::group(['prefix' => 'member', 'as' => 'member.', 'middleware' => ['auth:sa
 
     // service
     Route::resource('service', ServiceController::class);
+
+    // request
+    Route::get('approve_request/{id}', [RequestController::class, 'approve'])->name('approve.request');
+    Route::resource('request', RequestController::class);
+
+    // my order
+    Route::get('accept/order/{id}', [MyOrderController::class, 'accepted'])->name('accept.order');
+    Route::get('reject/order/{id}', [MyOrderController::class, 'rejected'])->name('reject.order');
+    Route::resource('order', MyOrderController::class);
+
+    // profile
+    Route::get('delete_photo', [ProfileController::class, 'delete'])->name('delete.photo.profile');
+    Route::resource('profile', ProfileController::class);
 });
 
 // Route::get('/', function () {
